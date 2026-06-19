@@ -8,7 +8,7 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap"
     rel="stylesheet"
   />
-  <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_KAKAO_API_KEY&libraries=services"></script>
+  <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=25b04a3096c41ec7fcbd1aee19703390&libraries=services"></script>
   <style>
     @font-face {
       font-family: 'Nanum Myeongjo';
@@ -471,15 +471,23 @@
     .bus-tag.green  { background: #ddf0dd; color: #226622; }
     .bus-tag.red    { background: #ffdddd; color: #aa2222; }
 
+    .venue-buttons {
+      display: flex;
+      width: 100%;
+      gap: 0.8rem;
+    }
+
     .btn {
       display: inline-block;
-      padding: 0.7rem 2rem;
+      flex: 1;
+      padding: 0.7rem 1rem;
       border: 1px solid var(--gold);
       color: var(--gold);
       font-family: 'Nanum Myeongjo', 'AppleMyungjo', 'Batang', '바탕', serif;
       font-size: 0.78rem;
       letter-spacing: 0.15em;
       text-decoration: none;
+      text-align: center;
       background: transparent;
       cursor: pointer;
       transition: background 0.2s, color 0.2s;
@@ -662,7 +670,10 @@
       서울 영등포구 국제금융로6길 26
     </p>
     <div id="kakao-map" class="fade-up"></div>
-    <a class="btn fade-up" href="https://map.kakao.com/link/to/웨딩여율리,37.52556,126.92508" target="_blank">길찾기</a>
+    <div class="venue-buttons fade-up">
+      <a class="btn" href="https://naver.me/Ixsqywvh" target="_blank">네이버지도</a>
+      <a class="btn" href="https://kko.to/8I2M-yxwte" target="_blank">카카오맵</a>
+    </div>
 
     <div class="transport fade-up">
 
@@ -802,8 +813,6 @@
         content: '<div style="padding:6px 10px;font-size:12px;white-space:nowrap;">웨딩여율리</div>'
       });
       infowindow.open(map, marker);
-      map.setDraggable(false);
-      map.setZoomable(false);
     }
 
     // ── D-Day 카운트다운 ──────────────────────────────────────
