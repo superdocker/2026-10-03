@@ -821,13 +821,16 @@
     const section = document.getElementById('crossfade');
     const img2    = section.querySelector('.crossfade-img2');
 
+    const CROSSFADE_HOLD = 0.4; // 사진이 화면에 다 들어찰 때까지(전체 스크롤 구간의 40%) 변화 없이 유지
+
     function updateCrossfade() {
       const rect            = section.getBoundingClientRect();
       const sectionHeight   = section.offsetHeight;
       const windowHeight    = window.innerHeight;
       const scrolled        = -rect.top;                          // 섹션 상단이 화면 위로 얼마나 올라갔는지
       const totalScrollable = sectionHeight - windowHeight;       // 섹션 내 스크롤 가능 거리
-      const progress        = Math.min(Math.max(scrolled / totalScrollable, 0), 1);
+      const rawProgress     = Math.min(Math.max(scrolled / totalScrollable, 0), 1);
+      const progress        = Math.min(Math.max((rawProgress - CROSSFADE_HOLD) / (1 - CROSSFADE_HOLD), 0), 1);
 
       img2.style.opacity = progress;
     }
