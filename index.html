@@ -156,18 +156,16 @@
 
     /* ── CROSSFADE SECTION ──────────────────── */
     /*
-      높이를 130vh로 잡아서 짧은 스크롤 공간만 확보한 뒤,
-      내부 컨테이너를 sticky로 고정시켜 두 이미지를 겹쳐 놓음.
-      JS에서 스크롤 진행률에 따라 img2의 opacity를 0→1로 조절.
+      섹션 높이는 이미지 크기 그대로(stretch 없음) → 바로 아래 텍스트가 이어짐.
+      JS에서 이미지가 화면 위쪽에 다가오는 정도에 따라 img2의 opacity를 0↔1로
+      양방향(스크롤 다운=진행, 스크롤 업=되돌아감)으로 조절.
     */
     .crossfade-section {
-      height: 130vh;
       position: relative;
     }
 
     .crossfade-sticky {
-      position: sticky;
-      top: 0;
+      position: relative;
       overflow: hidden;
     }
 
@@ -817,24 +815,25 @@
       }
     })();
 
-    // ── 스크롤 crossfade ──────────────────────────────────────
-    const section = document.getElementById('crossfade');
-    const img2    = section.querySelector('.crossfade-img2');
-
-    const CROSSFADE_HOLD = 0.4; // 사진이 화면에 다 들어찰 때까지(전체 스크롤 구간의 40%) 변화 없이 유지
+    // ── 스크롤에 따라 양방향으로 자연스럽게 crossfade ─────────────
+    const crossfadeSection = document.getElementById('crossfade');
+    const crossfadeImg2    = crossfadeSection.querySelector('.crossfade-img2');
+    const CROSSFADE_DISTANCE = window.innerHeight * 0.7; // 페이드가 진행되는 스크롤 거리
+    let crossfadeRestTop = crossfadeSection.getBoundingClientRect().top; // 최초(스크롤 0) 위치
 
     function updateCrossfade() {
-      const rect            = section.getBoundingClientRect();
-      const sectionHeight   = section.offsetHeight;
-      const windowHeight    = window.innerHeight;
-      const scrolled        = -rect.top;                          // 섹션 상단이 화면 위로 얼마나 올라갔는지
-      const totalScrollable = sectionHeight - windowHeight;       // 섹션 내 스크롤 가능 거리
-      const rawProgress     = Math.min(Math.max(scrolled / totalScrollable, 0), 1);
-      const progress        = Math.min(Math.max((rawProgress - CROSSFADE_HOLD) / (1 - CROSSFADE_HOLD), 0), 1);
+      const rect     = crossfadeSection.getBoundingClientRect();
+      const moved    = crossfadeRestTop - rect.top;             // 최초 위치에서 위로 올라온 거리
+      const progress = Math.min(Math.max(moved / CROSSFADE_DISTANCE, 0), 1);
 
-      img2.style.opacity = progress;
+      crossfadeImg2.style.opacity = progress;
     }
 
+    // 이미지 로드가 끝나야 섹션의 최종 위치를 알 수 있으므로 load 시점에 기준을 다시 잡음
+    window.addEventListener('load', () => {
+      crossfadeRestTop = crossfadeSection.getBoundingClientRect().top;
+      updateCrossfade();
+    });
     window.addEventListener('scroll', updateCrossfade, { passive: true });
     updateCrossfade();
 
