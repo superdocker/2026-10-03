@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>장환 ♥ 유진</title>
+  <title>2026.10.03</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap"
     rel="stylesheet"
@@ -33,6 +33,9 @@
       --muted: #7a7068;
       --gold: #9a7b4f;
       --line: #ddd8d0;
+      --fs-sm: 0.8rem;
+      --fs-base: 0.9rem;
+      --fs-lg: 2rem;
     }
 
     html { scroll-behavior: smooth; }
@@ -61,7 +64,7 @@
 
     .cover-label {
       font-family: 'Cormorant Garamond', 'Nanum Myeongjo', 'AppleMyungjo', 'Batang', '바탕', serif;
-      font-size: 0.75rem;
+      font-size: var(--fs-sm);
       letter-spacing: 0.35em;
       color: var(--gold);
       text-transform: uppercase;
@@ -69,32 +72,32 @@
 
     .cover-names {
       font-family: 'Cormorant Garamond', 'Nanum Myeongjo', 'AppleMyungjo', 'Batang', '바탕', serif;
-      font-size: 2.8rem;
+      font-size: var(--fs-lg);
       font-weight: 300;
       letter-spacing: 0.05em;
       line-height: 1.1;
     }
 
     .cover-ampersand {
-      font-size: 1.4rem;
+      font-size: var(--fs-base);
       color: var(--gold);
       font-style: italic;
     }
 
     .cover-date {
-      font-size: 0.78rem;
+      font-size: var(--fs-base);
       letter-spacing: 0.2em;
       color: var(--muted);
     }
 
     .cover-venue {
-      font-size: 0.9rem;
+      font-size: var(--fs-base);
       letter-spacing: 0.1em;
-      color: var(--text);
+      color: var(--muted);
     }
 
     .cover-address {
-      font-size: 0.72rem;
+      font-size: var(--fs-sm);
       letter-spacing: 0.05em;
       color: var(--muted);
     }
@@ -114,14 +117,14 @@
     }
 
     .cover-dday-label {
-      font-size: 0.65rem;
+      font-size: var(--fs-sm);
       letter-spacing: 0.25em;
       color: var(--muted);
     }
 
     .cover-dday-number {
       font-family: 'Cormorant Garamond', 'Nanum Myeongjo', 'AppleMyungjo', 'Batang', '바탕', serif;
-      font-size: 2.4rem;
+      font-size: var(--fs-lg);
       font-weight: 300;
       letter-spacing: 0.05em;
       color: var(--gold);
@@ -136,12 +139,17 @@
       padding-bottom: 0;
     }
 
+    .cover-footer .cover-date {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
     .cover-footer .cover-venue {
-      margin-bottom: 0.15rem;
+      margin-bottom: 1rem;
     }
 
     .cover-footer .cover-address {
-      margin-bottom: 0.6rem;
+      margin-bottom: 1.6rem;
     }
 
     .scroll-hint {
@@ -149,7 +157,7 @@
       flex-direction: column;
       align-items: center;
       gap: 0.4rem;
-      font-size: 0.65rem;
+      font-size: var(--fs-sm);
       letter-spacing: 0.2em;
       color: var(--muted);
       animation: bounce 2s infinite;
@@ -219,7 +227,7 @@
     }
 
     .crossfade-caption p {
-      font-size: 0.8rem;
+      font-size: var(--fs-sm);
       letter-spacing: 0.2em;
       opacity: 0.85;
     }
@@ -236,14 +244,14 @@
 
     .section-label {
       font-family: 'Cormorant Garamond', 'Nanum Myeongjo', 'AppleMyungjo', 'Batang', '바탕', serif;
-      font-size: 0.7rem;
+      font-size: var(--fs-sm);
       letter-spacing: 0.35em;
       color: var(--gold);
       text-transform: uppercase;
     }
 
     .message-text {
-      font-size: 0.88rem;
+      font-size: var(--fs-base);
       line-height: 2.2;
       color: var(--muted);
       word-break: keep-all;
@@ -251,7 +259,7 @@
 
     .message-names {
       font-family: 'Cormorant Garamond', 'Nanum Myeongjo', 'AppleMyungjo', 'Batang', '바탕', serif;
-      font-size: 1.1rem;
+      font-size: var(--fs-base);
       letter-spacing: 0.15em;
       color: var(--text);
     }
@@ -376,7 +384,7 @@
 
     .lightbox-counter {
       margin-top: 1rem;
-      font-size: 0.7rem;
+      font-size: var(--fs-sm);
       color: rgba(255, 255, 255, 0.55);
       letter-spacing: 0.15em;
     }
@@ -393,13 +401,13 @@
 
     .venue-title {
       font-family: 'Cormorant Garamond', 'Nanum Myeongjo', 'AppleMyungjo', 'Batang', '바탕', serif;
-      font-size: 1.5rem;
+      font-size: var(--fs-lg);
       font-weight: 300;
       letter-spacing: 0.05em;
     }
 
     .venue-info {
-      font-size: 0.82rem;
+      font-size: var(--fs-base);
       line-height: 2;
       color: var(--muted);
     }
@@ -425,7 +433,7 @@
     }
 
     .transport-title {
-      font-size: 0.68rem;
+      font-size: var(--fs-sm);
       letter-spacing: 0.2em;
       color: var(--gold);
       padding-bottom: 0.4rem;
@@ -440,7 +448,7 @@
     .transport-row {
       display: flex;
       gap: 0.7rem;
-      font-size: 0.78rem;
+      font-size: var(--fs-base);
       line-height: 1.8;
       color: var(--muted);
       align-items: flex-start;
@@ -461,7 +469,7 @@
     }
 
     .bus-tag {
-      font-size: 0.68rem;
+      font-size: var(--fs-sm);
       padding: 0.15rem 0.45rem;
       border-radius: 2px;
       letter-spacing: 0.03em;
@@ -484,7 +492,7 @@
       border: 1px solid var(--gold);
       color: var(--gold);
       font-family: 'Nanum Myeongjo', 'AppleMyungjo', 'Batang', '바탕', serif;
-      font-size: 0.78rem;
+      font-size: var(--fs-base);
       letter-spacing: 0.15em;
       text-decoration: none;
       text-align: center;
@@ -523,7 +531,7 @@
     }
 
     .account-intro {
-      font-size: 0.82rem;
+      font-size: var(--fs-base);
       line-height: 2;
       color: var(--muted);
       text-align: center;
@@ -531,7 +539,7 @@
     }
 
     .account-party {
-      font-size: 0.7rem;
+      font-size: var(--fs-sm);
       letter-spacing: 0.2em;
       color: var(--gold);
     }
@@ -546,7 +554,7 @@
     }
 
     .account-detail {
-      font-size: 0.8rem;
+      font-size: var(--fs-base);
       line-height: 1.7;
       color: var(--muted);
     }
@@ -556,7 +564,7 @@
       padding: 0.35rem 0.8rem;
       border: 1px solid var(--line);
       background: transparent;
-      font-size: 0.68rem;
+      font-size: var(--fs-sm);
       letter-spacing: 0.1em;
       color: var(--muted);
       cursor: pointer;
@@ -573,7 +581,7 @@
       padding: 3rem 2rem;
       text-align: center;
       font-family: 'Cormorant Garamond', 'Nanum Myeongjo', 'AppleMyungjo', 'Batang', '바탕', serif;
-      font-size: 0.75rem;
+      font-size: var(--fs-sm);
       letter-spacing: 0.2em;
       color: var(--muted);
     }
@@ -792,8 +800,7 @@
 
   <!-- ── FOOTER ── -->
   <footer>
-    <p>장환 ♥ 유진</p>
-    <p style="margin-top: 0.4rem; font-size: 0.65rem; opacity: 0.5;">2026 · 10 · 03</p>
+    <p style="font-size: var(--fs-base); opacity: 0.5;">2026 · 10 · 03</p>
   </footer>
 
   <script>
