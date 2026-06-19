@@ -576,6 +576,27 @@
       color: var(--gold);
     }
 
+    /* ── THANKS ─────────────────────────────── */
+    .thanks-section {
+      padding: 4rem 0 3rem;
+      text-align: center;
+    }
+
+    .thanks-text {
+      font-family: 'Cormorant Garamond', 'Nanum Myeongjo', 'AppleMyungjo', 'Batang', '바탕', serif;
+      font-size: var(--fs-base);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: var(--gold);
+      margin-top: 2rem;
+    }
+
+    /* image2는 정사각형이라 image1과 달리 위쪽을 크롭하지 않음 */
+    #thanks-crossfade .crossfade-img1,
+    #thanks-crossfade .crossfade-img2 {
+      margin-top: 0;
+    }
+
     /* ── FOOTER ─────────────────────────────── */
     footer {
       padding: 3rem 2rem;
@@ -787,6 +808,15 @@
     </div>
   </section>
 
+  <!-- ── THANKS ── -->
+  <section class="thanks-section" id="thanks-crossfade">
+    <div class="crossfade-sticky">
+      <img class="crossfade-img1" src="image2-fade-before.jpg" alt="감사 인사 사진 1" />
+      <img class="crossfade-img2" src="image2-fade-after.png" alt="감사 인사 사진 2" />
+    </div>
+    <p class="thanks-text fade-up">행복하게 잘 살겠습니다</p>
+  </section>
+
   <!-- ── LIGHTBOX ── -->
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightbox-close"></button>
@@ -867,6 +897,23 @@
     });
     window.addEventListener('scroll', updateCrossfade, { passive: true });
     updateCrossfade();
+
+    // ── 마지막 "감사합니다" 사진도 스크롤에 따라 crossfade ────────
+    // 페이지 맨 끝(더 스크롤할 수 없는 지점)에 도달하면 무조건 100%가 되도록
+    // 섹션 위치가 아니라 "문서 끝까지 남은 거리" 기준으로 계산
+    const thanksImg2 = document.querySelector('#thanks-crossfade .crossfade-img2');
+    const THANKS_CROSSFADE_DISTANCE = window.innerHeight * 0.6;
+
+    function updateThanksCrossfade() {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const remaining = maxScroll - window.scrollY; // 0이면 더 이상 스크롤할 수 없는 끝
+      const progress  = Math.min(Math.max((THANKS_CROSSFADE_DISTANCE - remaining) / THANKS_CROSSFADE_DISTANCE, 0), 1);
+
+      thanksImg2.style.opacity = progress;
+    }
+
+    window.addEventListener('scroll', updateThanksCrossfade, { passive: true });
+    updateThanksCrossfade();
 
     // ── 섹션 fade-up 애니메이션 ───────────────────────────────
     const observer = new IntersectionObserver(
