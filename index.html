@@ -887,24 +887,17 @@
       return (p - HOLD_BEFORE) / (1 - HOLD_BEFORE - HOLD_AFTER);
     }
 
-    const crossfadeSection = document.getElementById('crossfade');
-    const crossfadeImg2    = crossfadeSection.querySelector('.crossfade-img2');
+    const crossfadeImg2 = document.querySelector('#crossfade .crossfade-img2');
     const CROSSFADE_DISTANCE = window.innerHeight * 0.7; // 페이드가 진행되는 스크롤 거리
-    let crossfadeRestTop = crossfadeSection.getBoundingClientRect().top; // 최초(스크롤 0) 위치
 
     function updateCrossfade() {
-      const rect     = crossfadeSection.getBoundingClientRect();
-      const moved    = crossfadeRestTop - rect.top;             // 최초 위치에서 위로 올라온 거리
-      const raw      = Math.min(Math.max(moved / CROSSFADE_DISTANCE, 0), 1);
+      // 스냅샷 없이 절대 스크롤 위치(window.scrollY)를 매번 그 자리에서 읽어서 계산
+      // → 로딩 지연으로 기준점이 잘못 잡히는 문제 없음
+      const raw = Math.min(Math.max(window.scrollY / CROSSFADE_DISTANCE, 0), 1);
 
       crossfadeImg2.style.opacity = applyCrossfadeHold(raw);
     }
 
-    // 이미지 로드가 끝나야 섹션의 최종 위치를 알 수 있으므로 load 시점에 기준을 다시 잡음
-    window.addEventListener('load', () => {
-      crossfadeRestTop = crossfadeSection.getBoundingClientRect().top;
-      updateCrossfade();
-    });
     window.addEventListener('scroll', updateCrossfade, { passive: true });
     updateCrossfade();
 
