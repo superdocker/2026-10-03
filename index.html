@@ -431,7 +431,6 @@
     .transport-group {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
     }
 
     .transport-title {
@@ -441,10 +440,15 @@
       padding-top: 3rem;
       border-top: 1px solid var(--line);
       text-align: center;
+      margin-bottom: 2rem;
     }
 
     .transport-group > *:not(.transport-title) {
       text-align: left;
+    }
+
+    .transport-row + .transport-row {
+      margin-top: 0.5rem;
     }
 
     .transport-row {
