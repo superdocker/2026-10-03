@@ -650,7 +650,7 @@
       <!-- 실제 사용 시 src를 커플 사진 경로로 교체 -->
       <img
         class="crossfade-img1"
-        src="image1-fade-before.png"
+        src="image1-fade-before.jpg"
         alt="웨딩 사진 1"
       />
       <img
@@ -828,7 +828,7 @@
   <section class="thanks-section" id="thanks-crossfade">
     <div class="crossfade-sticky">
       <img class="crossfade-img1" src="image2-fade-before.jpg" alt="감사 인사 사진 1" />
-      <img class="crossfade-img2" src="image2-fade-after.png" alt="감사 인사 사진 2" />
+      <img class="crossfade-img2" src="image2-fade-after.jpg" alt="감사 인사 사진 2" />
     </div>
     <p class="thanks-text fade-up">행복하게 잘 살겠습니다</p>
   </section>
@@ -1031,17 +1031,21 @@
         const grid = document.getElementById('gallery-grid');
         if (!images.length) return;
         images.forEach((file, i) => {
-          // 갤러리 썸네일
+          // 갤러리 썸네일 (경량 썸네일 이미지 사용)
           const thumb = document.createElement('img');
-          thumb.src   = `gallery/${file}`;
-          thumb.alt   = `갤러리 ${i + 1}`;
+          thumb.src     = `gallery/thumbs/${file}`;
+          thumb.alt     = `갤러리 ${i + 1}`;
+          thumb.loading = 'lazy';
+          thumb.decoding = 'async';
           thumb.addEventListener('click', () => openLightbox(i));
           grid.appendChild(thumb);
 
-          // 라이트박스 트랙 슬라이드
+          // 라이트박스 트랙 슬라이드 (원본 크기 이미지)
           const slide = document.createElement('img');
-          slide.src   = `gallery/${file}`;
-          slide.alt   = `갤러리 ${i + 1}`;
+          slide.src     = `gallery/${file}`;
+          slide.alt     = `갤러리 ${i + 1}`;
+          slide.loading = 'lazy';
+          slide.decoding = 'async';
           lightboxTrack.appendChild(slide);
         });
       })
